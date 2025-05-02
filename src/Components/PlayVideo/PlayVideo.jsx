@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next"
 
 const API_KEY = "AIzaSyArSVn7PRgf3YgqHHccB07UwL-GXtWVcqs";
 
-const PlayVideo = () => {
+const PlayVideo = ({darkMode}) => {
   const { t } = useTranslation()
   const { videoId } = useParams();
 
@@ -76,11 +76,11 @@ const PlayVideo = () => {
       <h3>{apiData?.snippet?.title || 'Yuklanmoqda...'}</h3>
 
       <div className="play-video-info">
-        <p>
+        <p style={{color: darkMode ? "white" : ""}}>
           {apiData ? value_converter(apiData.statistics.viewCount) : '0'} Views &bull;{' '}
           {apiData ? moment(apiData.snippet.publishedAt).fromNow() : ''}
         </p>
-        <div>
+        <div style={{color: darkMode ? "white" : ""}}>
           <span><img src={like} alt="like" /> {apiData ? value_converter(apiData.statistics.likeCount || 0) : '0'}</span>
           <span><img src={dislike} alt="dislike" /> 2</span>
           <span><img src={share} alt="share" /> {t("share")}</span>
@@ -90,32 +90,32 @@ const PlayVideo = () => {
 
       <hr />
 
-      <div className="publisher">
+      <div style={{color: darkMode ? "white" : ""}} className="publisher">
         <img src={channelData?.snippet?.thumbnails?.default?.url || ''} alt="channel" />
-        <div>
-          <p>{channelData?.snippet?.title || 'Channel nomi'}</p>
-          <span>{channelData ? value_converter(channelData.statistics.subscriberCount) : "0"} {t("followers")}</span>
+        <div style={{color: darkMode ? "white" : ""}}>
+          <p style={{color: darkMode ? "white" : ""}}>{channelData?.snippet?.title || 'Channel nomi'}</p>
+          <span style={{color: darkMode ? "white" : ""}}>{channelData ? value_converter(channelData.statistics.subscriberCount) : "0"} {t("followers")}</span>
         </div>
         <button>{t("subscribe")}</button>
       </div>
 
-      <div className="vid-description">
-        <p>{t("vid_description")}</p>
-        <p>{t("read_more")}</p>
+      <div style={{color: darkMode ? "white" : ""}} className="vid-description">
+        <p style={{color: darkMode ? "white" : ""}}>{t("vid_description")}</p>
+        <p style={{color: darkMode ? "white" : ""}}>{t("read_more")}</p>
         <hr />
-        <h4>{comments.length} {t("comment")}</h4>
+        <h4 style={{color: darkMode ? "white" : ""}}>{comments.length} {t("comment")}</h4>
 
         {comments.map((commentItem, i) => {
           const comment = commentItem.snippet.topLevelComment.snippet;
           return (
             <div className="comment" key={i}>
               <img src={comment.authorProfileImageUrl || user_profile} alt="user" />
-              <div>
-                <h3>{comment.authorDisplayName} <span>{moment(comment.publishedAt).fromNow()}</span></h3>
-                <p>{comment.textDisplay}</p>
-                <div className="comment-action">
+              <div style={{color: darkMode ? "white" : ""}}>
+                <h3 style={{color: darkMode ? "white" : ""}}>{comment.authorDisplayName} <span>{moment(comment.publishedAt).fromNow()}</span></h3>
+                <p style={{color: darkMode ? "white" : ""}}>{comment.textDisplay}</p>
+                <div style={{color: darkMode ? "white" : ""}} className="comment-action">
                   <img src={like} alt="like" />
-                  <span>{value_converter(comment.likeCount || 0)}</span>
+                  <span style={{color: darkMode ? "white" : ""}}>{value_converter(comment.likeCount || 0)}</span>
                   <img src={dislike} alt="dislike" />
                 </div>
               </div>
